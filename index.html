@@ -1,0 +1,1961 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description" content="7PUZ Tweaks — otimização profissional para Windows e PC. Escolha seu plano e melhore desempenho, estabilidade e responsividade.">
+
+  <title>7PUZ Tweaks — Otimização de PC</title>
+
+  <style>
+    :root{
+      --bg:#050505;
+      --bg2:#0a0a0c;
+      --card:#101012;
+      --card2:#151518;
+      --text:#f5f5f5;
+      --muted:#99999f;
+      --muted2:#6f6f75;
+      --line:rgba(255,255,255,.09);
+      --white:#fff;
+      --black:#070707;
+      --max:1180px;
+      --radius:20px;
+    }
+
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:
+        radial-gradient(circle at 50% -15%,rgba(255,255,255,.12),transparent 35%),
+        linear-gradient(180deg,#050505 0%,#09090b 48%,#040404 100%);
+      color:var(--text);
+      line-height:1.6;
+      overflow-x:hidden;
+    }
+
+    body.modal-open{
+      overflow:hidden;
+    }
+
+    a{
+      text-decoration:none;
+      color:inherit;
+    }
+
+    button{
+      font:inherit;
+    }
+
+    .container{
+      width:min(var(--max),calc(100% - 40px));
+      margin:auto;
+    }
+
+    /* =========================
+       NAVBAR
+    ========================= */
+
+    .topbar{
+      position:fixed;
+      top:0;
+      left:0;
+      right:0;
+      z-index:50;
+      border-bottom:1px solid rgba(255,255,255,.07);
+      background:rgba(5,5,5,.75);
+      backdrop-filter:blur(18px);
+    }
+
+    nav{
+      height:76px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+    }
+
+    .brand{
+      font-weight:950;
+      letter-spacing:-.05em;
+      font-size:1.15rem;
+    }
+
+    .brand span{
+      color:#77777d;
+    }
+
+    .navlinks{
+      display:flex;
+      gap:28px;
+      color:#a7a7ad;
+      font-size:.9rem;
+    }
+
+    .navlinks a{
+      transition:.2s;
+    }
+
+    .navlinks a:hover{
+      color:#fff;
+    }
+
+    .nav-cta{
+      padding:11px 17px;
+      border:1px solid #fff;
+      border-radius:10px;
+      background:#fff;
+      color:#080808;
+      font-weight:850;
+      font-size:.85rem;
+      transition:.2s;
+    }
+
+    .nav-cta:hover{
+      transform:translateY(-2px);
+    }
+
+    .mobile-menu{
+      display:none;
+      background:none;
+      border:0;
+      color:#fff;
+      font-size:1.4rem;
+      cursor:pointer;
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero{
+      padding:175px 0 105px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .hero:before{
+      content:"";
+      position:absolute;
+      width:620px;
+      height:620px;
+      left:50%;
+      top:40px;
+      transform:translateX(-50%);
+      background:rgba(255,255,255,.075);
+      filter:blur(120px);
+      border-radius:50%;
+      pointer-events:none;
+    }
+
+    .hero-inner{
+      position:relative;
+      text-align:center;
+      max-width:900px;
+      margin:auto;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      border:1px solid var(--line);
+      padding:7px 12px;
+      border-radius:999px;
+      color:#bdbdc3;
+      background:rgba(255,255,255,.03);
+      font-size:.76rem;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.1em;
+    }
+
+    .dot{
+      width:7px;
+      height:7px;
+      background:#fff;
+      border-radius:50%;
+      box-shadow:0 0 16px #fff;
+    }
+
+    h1{
+      font-size:clamp(3.1rem,7vw,6.5rem);
+      line-height:.92;
+      letter-spacing:-.07em;
+      margin:28px 0 25px;
+    }
+
+    h1 em{
+      font-style:normal;
+      color:#77777d;
+    }
+
+    .hero p{
+      font-size:1.12rem;
+      color:#a7a7ad;
+      max-width:700px;
+      margin:auto;
+    }
+
+    .actions{
+      display:flex;
+      justify-content:center;
+      gap:12px;
+      margin-top:34px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      min-height:50px;
+      padding:0 22px;
+      border-radius:12px;
+      font-weight:850;
+      cursor:pointer;
+      transition:transform .2s,background .2s,border .2s;
+      border:0;
+    }
+
+    .btn:hover{
+      transform:translateY(-2px);
+    }
+
+    .btn-primary{
+      background:#fff;
+      color:#080808;
+    }
+
+    .btn-secondary{
+      border:1px solid var(--line);
+      background:#101013;
+      color:#fff;
+    }
+
+    .hero-note{
+      margin-top:16px!important;
+      font-size:.78rem!important;
+      color:#68686e!important;
+    }
+
+    /* =========================
+       GERAL
+    ========================= */
+
+    section{
+      padding:95px 0;
+    }
+
+    .section-head{
+      max-width:720px;
+      margin-bottom:45px;
+    }
+
+    .kicker{
+      color:#8e8e95;
+      font-size:.75rem;
+      font-weight:900;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+    }
+
+    h2{
+      font-size:clamp(2rem,4vw,3.5rem);
+      line-height:1.02;
+      letter-spacing:-.05em;
+      margin-top:10px;
+    }
+
+    .section-head p{
+      color:#92929a;
+      margin-top:15px;
+    }
+
+    /* =========================
+       BENEFÍCIOS
+    ========================= */
+
+    .grid-3{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:16px;
+    }
+
+    .card{
+      background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.018));
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:28px;
+    }
+
+    .icon{
+      width:42px;
+      height:42px;
+      border-radius:12px;
+      background:#fff;
+      color:#080808;
+      display:grid;
+      place-items:center;
+      font-weight:1000;
+      margin-bottom:22px;
+    }
+
+    .card h3{
+      font-size:1.08rem;
+      margin-bottom:8px;
+    }
+
+    .card p{
+      color:#909097;
+      font-size:.94rem;
+    }
+
+    /* =========================
+       PLANOS
+    ========================= */
+
+    .plans{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+      align-items:stretch;
+    }
+
+    .plan{
+      position:relative;
+      display:flex;
+      flex-direction:column;
+      background:
+        linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.015));
+      border:1px solid var(--line);
+      border-radius:24px;
+      padding:28px;
+      transition:.25s;
+    }
+
+    .plan:hover{
+      transform:translateY(-5px);
+      border-color:rgba(255,255,255,.2);
+      box-shadow:0 20px 60px rgba(0,0,0,.3);
+    }
+
+    .plan.featured{
+      border-color:rgba(255,255,255,.35);
+      background:
+        linear-gradient(145deg,rgba(255,255,255,.085),rgba(255,255,255,.02));
+    }
+
+    .badge{
+      position:absolute;
+      top:18px;
+      right:18px;
+      background:#fff;
+      color:#080808;
+      padding:5px 9px;
+      border-radius:999px;
+      font-size:.66rem;
+      font-weight:950;
+      text-transform:uppercase;
+      letter-spacing:.06em;
+    }
+
+    .plan-number{
+      color:#73737a;
+      font-size:.72rem;
+      font-weight:900;
+      letter-spacing:.1em;
+      margin-bottom:18px;
+    }
+
+    .plan h3{
+      font-size:1.4rem;
+      letter-spacing:-.03em;
+      margin-bottom:8px;
+    }
+
+    .plan-description{
+      color:#85858c;
+      font-size:.88rem;
+      min-height:66px;
+    }
+
+    .plan-price{
+      font-size:2.7rem;
+      font-weight:950;
+      letter-spacing:-.06em;
+      margin:22px 0 4px;
+    }
+
+    .plan-price small{
+      font-size:1rem;
+      color:#85858b;
+      font-weight:750;
+    }
+
+    .plan-price-note{
+      color:#68686e;
+      font-size:.72rem;
+      margin-bottom:18px;
+    }
+
+    .plan ul{
+      list-style:none;
+      margin:4px 0 25px;
+      flex:1;
+    }
+
+    .plan li{
+      color:#c6c6cb;
+      font-size:.86rem;
+      padding:9px 0;
+      border-bottom:1px solid var(--line);
+    }
+
+    .plan li::before{
+      content:"✓";
+      color:#fff;
+      font-weight:900;
+      margin-right:9px;
+    }
+
+    .plan .btn{
+      width:100%;
+    }
+
+    .plans-extra{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:18px;
+      margin-top:18px;
+    }
+
+    .combo{
+      position:relative;
+      background:linear-gradient(145deg,#151518,#0c0c0e);
+      border:1px solid rgba(255,255,255,.14);
+      border-radius:24px;
+      padding:28px;
+      display:flex;
+      flex-direction:column;
+    }
+
+    .combo:hover{
+      border-color:rgba(255,255,255,.28);
+    }
+
+    .combo-label{
+      color:#8e8e95;
+      font-size:.72rem;
+      font-weight:900;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+
+    .combo h3{
+      font-size:1.45rem;
+      margin:6px 0;
+    }
+
+    .combo p{
+      color:#85858c;
+      font-size:.88rem;
+      margin-bottom:18px;
+    }
+
+    .combo-price{
+      font-size:2.5rem;
+      font-weight:950;
+      letter-spacing:-.06em;
+      margin-bottom:18px;
+    }
+
+    .combo-price small{
+      color:#85858b;
+      font-size:.95rem;
+    }
+
+    .combo .btn{
+      width:100%;
+      margin-top:auto;
+    }
+
+    /* =========================
+       PROCESSO
+    ========================= */
+
+    .showcase{
+      border:1px solid var(--line);
+      border-radius:28px;
+      overflow:hidden;
+      background:#0c0c0e;
+    }
+
+    .mock-top{
+      height:46px;
+      border-bottom:1px solid var(--line);
+      display:flex;
+      align-items:center;
+      padding:0 18px;
+      gap:7px;
+    }
+
+    .mock-top i{
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      background:#444;
+    }
+
+    .mock-content{
+      padding:38px;
+      display:grid;
+      grid-template-columns:1.15fr .85fr;
+      gap:28px;
+    }
+
+    .terminal{
+      min-height:310px;
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:22px;
+      background:#080809;
+      font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+      color:#a8a8ad;
+      font-size:.82rem;
+    }
+
+    .terminal strong{
+      color:#fff;
+    }
+
+    .terminal .ok{
+      color:#c9c9cd;
+    }
+
+    .stats{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+    }
+
+    .stat{
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:22px;
+      background:#111114;
+    }
+
+    .stat b{
+      display:block;
+      font-size:1.8rem;
+      letter-spacing:-.05em;
+    }
+
+    .stat span{
+      font-size:.78rem;
+      color:#7e7e85;
+    }
+
+    /* =========================
+       FAQ
+    ========================= */
+
+    .faq{
+      max-width:850px;
+      margin:auto;
+    }
+
+    details{
+      border-bottom:1px solid var(--line);
+      padding:20px 0;
+    }
+
+    summary{
+      cursor:pointer;
+      list-style:none;
+      font-weight:800;
+      display:flex;
+      justify-content:space-between;
+      gap:15px;
+    }
+
+    summary::-webkit-details-marker{
+      display:none;
+    }
+
+    summary:after{
+      content:"+";
+      color:#888;
+      font-size:1.2rem;
+    }
+
+    details[open] summary:after{
+      content:"−";
+    }
+
+    details p{
+      color:#909097;
+      padding-top:13px;
+      max-width:720px;
+    }
+
+    /* =========================
+       CTA FINAL
+    ========================= */
+
+    .final{
+      text-align:center;
+      border:1px solid var(--line);
+      border-radius:28px;
+      padding:75px 25px;
+      background:
+        radial-gradient(circle at 50% 0%,rgba(255,255,255,.09),transparent 50%),
+        #0d0d0f;
+    }
+
+    .final p{
+      color:#92929a;
+      max-width:600px;
+      margin:15px auto 25px;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer{
+      border-top:1px solid var(--line);
+      padding:28px 0;
+      color:#68686e;
+      font-size:.78rem;
+    }
+
+    footer .foot{
+      display:flex;
+      justify-content:space-between;
+      gap:15px;
+    }
+
+    /* =========================
+       MODAL
+    ========================= */
+
+    .modal-overlay{
+      position:fixed;
+      inset:0;
+      z-index:200;
+      background:rgba(0,0,0,.78);
+      backdrop-filter:blur(10px);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:20px;
+    }
+
+    .modal-overlay.active{
+      display:flex;
+    }
+
+    .modal{
+      width:min(560px,100%);
+      max-height:90vh;
+      overflow:auto;
+      background:linear-gradient(145deg,#18181b,#0d0d0f);
+      border:1px solid rgba(255,255,255,.15);
+      border-radius:24px;
+      padding:30px;
+      box-shadow:0 30px 100px rgba(0,0,0,.65);
+      animation:modalIn .2s ease;
+    }
+
+    @keyframes modalIn{
+      from{
+        opacity:0;
+        transform:translateY(15px) scale(.98);
+      }
+      to{
+        opacity:1;
+        transform:none;
+      }
+    }
+
+    .modal-header{
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      align-items:flex-start;
+      margin-bottom:20px;
+    }
+
+    .modal-header h3{
+      font-size:1.7rem;
+      letter-spacing:-.04em;
+    }
+
+    .close-modal{
+      width:38px;
+      height:38px;
+      border:1px solid var(--line);
+      background:#101013;
+      color:#fff;
+      border-radius:10px;
+      cursor:pointer;
+      font-size:1.2rem;
+      flex-shrink:0;
+    }
+
+    .modal-price{
+      font-size:2.7rem;
+      font-weight:950;
+      letter-spacing:-.06em;
+      margin-bottom:20px;
+    }
+
+    .modal-description{
+      color:#9999a1;
+      font-size:.92rem;
+      margin-bottom:22px;
+    }
+
+    .modal h4{
+      font-size:.8rem;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      color:#77777e;
+      margin-bottom:10px;
+    }
+
+    .modal ul{
+      list-style:none;
+      margin-bottom:25px;
+    }
+
+    .modal li{
+      color:#d0d0d4;
+      padding:10px 0;
+      border-bottom:1px solid var(--line);
+      font-size:.9rem;
+    }
+
+    .modal li::before{
+      content:"✓";
+      color:#fff;
+      font-weight:900;
+      margin-right:10px;
+    }
+
+    .modal-payment{
+      width:100%;
+    }
+
+    .modal-note{
+      text-align:center;
+      color:#66666d;
+      font-size:.7rem;
+      margin-top:10px;
+    }
+
+    /* =========================
+       REVEAL
+    ========================= */
+
+    .reveal{
+      opacity:0;
+      transform:translateY(18px);
+      transition:opacity .7s ease,transform .7s ease;
+    }
+
+    .reveal.visible{
+      opacity:1;
+      transform:none;
+    }
+
+    /* =========================
+       RESPONSIVO
+    ========================= */
+
+    @media(max-width:900px){
+
+      .navlinks{
+        display:none;
+      }
+
+      .mobile-menu{
+        display:block;
+      }
+
+      .grid-3,
+      .plans{
+        grid-template-columns:1fr;
+      }
+
+      .plans-extra{
+        grid-template-columns:1fr;
+      }
+
+      .mock-content{
+        grid-template-columns:1fr;
+      }
+
+      .hero{
+        padding-top:145px;
+      }
+    }
+
+    @media(max-width:520px){
+
+      .container{
+        width:min(var(--max),calc(100% - 28px));
+      }
+
+      nav{
+        height:68px;
+      }
+
+      .nav-cta{
+        display:none;
+      }
+
+      section{
+        padding:70px 0;
+      }
+
+      .hero{
+        padding-bottom:65px;
+      }
+
+      h1{
+        font-size:3.1rem;
+      }
+
+      .hero p{
+        font-size:1rem;
+      }
+
+      .card,
+      .plan,
+      .combo{
+        padding:22px;
+      }
+
+      .stats{
+        grid-template-columns:1fr;
+      }
+
+      .mock-content{
+        padding:20px;
+      }
+
+      .modal{
+        padding:24px;
+      }
+
+      footer .foot{
+        flex-direction:column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================
+       NAVBAR
+  ========================= -->
+
+  <header class="topbar">
+    <div class="container">
+      <nav>
+
+        <a class="brand" href="#">
+          7PUZ <span>TWEAKS</span>
+        </a>
+
+        <div class="navlinks">
+          <a href="#beneficios">Benefícios</a>
+          <a href="#processo">Como funciona</a>
+          <a href="#planos">Planos</a>
+          <a href="#faq">FAQ</a>
+        </div>
+
+        <a class="nav-cta" href="#planos">
+          Ver planos
+        </a>
+
+        <button
+          class="mobile-menu"
+          aria-label="Abrir menu"
+          onclick="toggleMenu()">
+          ☰
+        </button>
+
+      </nav>
+    </div>
+  </header>
+
+
+  <main>
+
+    <!-- =========================
+         HERO
+    ========================= -->
+
+    <section class="hero">
+
+      <div class="container hero-inner reveal">
+
+        <div class="eyebrow">
+          <span class="dot"></span>
+          7PUZ Tweaks
+        </div>
+
+        <h1>
+          Seu PC pode entregar
+          <em>muito mais.</em>
+        </h1>
+
+        <p>
+          Otimizações pensadas para melhorar desempenho,
+          estabilidade e responsividade do seu computador,
+          de acordo com seu sistema e seu uso.
+        </p>
+
+        <div class="actions">
+
+          <a
+            class="btn btn-primary"
+            href="#planos">
+            Escolher minha otimização →
+          </a>
+
+          <a
+            class="btn btn-secondary"
+            href="#processo">
+            Conhecer o processo
+          </a>
+
+        </div>
+
+        <p class="hero-note">
+          Atendimento personalizado • Windows 10 e Windows 11
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         BENEFÍCIOS
+    ========================= -->
+
+    <section id="beneficios">
+
+      <div class="container">
+
+        <div class="section-head reveal">
+
+          <div class="kicker">
+            Por que otimizar?
+          </div>
+
+          <h2>
+            Menos desperdício.<br>
+            Mais consistência.
+          </h2>
+
+          <p>
+            A proposta da 7PUZ Tweaks é identificar configurações
+            que podem ser ajustadas e adaptar o sistema ao perfil
+            de uso de cada cliente.
+          </p>
+
+        </div>
+
+
+        <div class="grid-3">
+
+          <article class="card reveal">
+
+            <div class="icon">
+              01
+            </div>
+
+            <h3>
+              Desempenho
+            </h3>
+
+            <p>
+              Ajustes voltados para reduzir processos desnecessários
+              e aproveitar melhor os recursos disponíveis no PC.
+            </p>
+
+          </article>
+
+
+          <article class="card reveal">
+
+            <div class="icon">
+              02
+            </div>
+
+            <h3>
+              Estabilidade
+            </h3>
+
+            <p>
+              Configurações pensadas para proporcionar uma experiência
+              mais consistente durante jogos e utilização diária.
+            </p>
+
+          </article>
+
+
+          <article class="card reveal">
+
+            <div class="icon">
+              03
+            </div>
+
+            <h3>
+              Responsividade
+            </h3>
+
+            <p>
+              Foco em inicialização, resposta do sistema e sensação
+              geral de agilidade durante o uso.
+            </p>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         PROCESSO
+    ========================= -->
+
+    <section id="processo">
+
+      <div class="container">
+
+        <div class="section-head reveal">
+
+          <div class="kicker">
+            Como funciona
+          </div>
+
+          <h2>
+            Um processo simples
+            e personalizado.
+          </h2>
+
+          <p>
+            O objetivo é trabalhar com ajustes direcionados,
+            evitando configurações genéricas que não fazem sentido
+            para todos os computadores.
+          </p>
+
+        </div>
+
+
+        <div class="showcase reveal">
+
+          <div class="mock-top">
+            <i></i>
+            <i></i>
+            <i></i>
+          </div>
+
+          <div class="mock-content">
+
+            <div class="terminal">
+
+              <div>
+                &gt; iniciando diagnóstico...
+              </div>
+
+              <br>
+
+              <div>
+                <strong>[01]</strong>
+                analisando sistema
+              </div>
+
+              <div>
+                <strong>[02]</strong>
+                verificando inicialização
+              </div>
+
+              <div>
+                <strong>[03]</strong>
+                avaliando configurações
+              </div>
+
+              <div>
+                <strong>[04]</strong>
+                aplicando ajustes
+              </div>
+
+              <div>
+                <strong>[05]</strong>
+                validando estabilidade
+              </div>
+
+              <br>
+
+              <div class="ok">
+                ✓ otimização concluída
+              </div>
+
+            </div>
+
+
+            <div class="stats">
+
+              <div class="stat">
+                <b>01</b>
+                <span>
+                  Diagnóstico inicial
+                </span>
+              </div>
+
+              <div class="stat">
+                <b>02</b>
+                <span>
+                  Ajustes personalizados
+                </span>
+              </div>
+
+              <div class="stat">
+                <b>03</b>
+                <span>
+                  Testes de estabilidade
+                </span>
+              </div>
+
+              <div class="stat">
+                <b>04</b>
+                <span>
+                  Orientação final
+                </span>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         PLANOS
+    ========================= -->
+
+    <section id="planos">
+
+      <div class="container">
+
+        <div class="section-head reveal">
+
+          <div class="kicker">
+            Escolha seu plano
+          </div>
+
+          <h2>
+            Encontre a otimização
+            ideal para seu PC.
+          </h2>
+
+          <p>
+            Escolha um plano abaixo para conferir os detalhes,
+            benefícios e acessar o pagamento pelo Mercado Pago.
+          </p>
+
+        </div>
+
+
+        <div class="plans">
+
+
+          <!-- BÁSICA -->
+
+          <article class="plan reveal">
+
+            <div class="plan-number">
+              PLANO 01
+            </div>
+
+            <h3>
+              Otimização Básica
+            </h3>
+
+            <p class="plan-description">
+              Uma opção de entrada para quem busca ajustes
+              essenciais de desempenho e responsividade.
+            </p>
+
+            <div class="plan-price">
+              R$ 21<small>,90</small>
+            </div>
+
+            <div class="plan-price-note">
+              pagamento único
+            </div>
+
+            <ul>
+
+              <li>
+                Ajustes básicos do sistema
+              </li>
+
+              <li>
+                Otimização de inicialização
+              </li>
+
+              <li>
+                Redução de processos desnecessários
+              </li>
+
+              <li>
+                Ajustes de responsividade
+              </li>
+
+            </ul>
+
+            <button
+              class="btn btn-secondary"
+              onclick="openPlan('basic')">
+              Ver detalhes →
+            </button>
+
+          </article>
+
+
+          <!-- AVANÇADA -->
+
+          <article class="plan featured reveal">
+
+            <div class="badge">
+              Mais escolhida
+            </div>
+
+            <div class="plan-number">
+              PLANO 02
+            </div>
+
+            <h3>
+              Otimização Avançada
+            </h3>
+
+            <p class="plan-description">
+              Uma otimização mais completa para usuários que
+              querem um ajuste mais aprofundado do sistema.
+            </p>
+
+            <div class="plan-price">
+              R$ 59<small>,90</small>
+            </div>
+
+            <div class="plan-price-note">
+              pagamento único
+            </div>
+
+            <ul>
+
+              <li>
+                Diagnóstico do sistema
+              </li>
+
+              <li>
+                Ajustes avançados de desempenho
+              </li>
+
+              <li>
+                Otimização de inicialização
+              </li>
+
+              <li>
+                Ajustes de responsividade
+              </li>
+
+              <li>
+                Configurações personalizadas
+              </li>
+
+            </ul>
+
+            <button
+              class="btn btn-primary"
+              onclick="openPlan('advanced')">
+              Ver detalhes →
+            </button>
+
+          </article>
+
+
+          <!-- PREMIUM -->
+
+          <article class="plan reveal">
+
+            <div class="plan-number">
+              PLANO 03
+            </div>
+
+            <h3>
+              Otimização Premium
+            </h3>
+
+            <p class="plan-description">
+              Nossa opção mais completa para quem deseja uma
+              experiência de otimização mais aprofundada.
+            </p>
+
+            <div class="plan-price">
+              R$ 149<small>,90</small>
+            </div>
+
+            <div class="plan-price-note">
+              pagamento único
+            </div>
+
+            <ul>
+
+              <li>
+                Diagnóstico completo
+              </li>
+
+              <li>
+                Ajustes avançados
+              </li>
+
+              <li>
+                Configurações personalizadas
+              </li>
+
+              <li>
+                Otimizações de desempenho
+              </li>
+
+              <li>
+                Checklist de estabilidade
+              </li>
+
+            </ul>
+
+            <button
+              class="btn btn-secondary"
+              onclick="openPlan('premium')">
+              Ver detalhes →
+            </button>
+
+          </article>
+
+        </div>
+
+
+        <!-- COMBOS -->
+
+        <div class="plans-extra">
+
+
+          <!-- WINDOWS 11 -->
+
+          <article class="combo reveal">
+
+            <div class="combo-label">
+              Combo especial
+            </div>
+
+            <h3>
+              Windows 11 + Avançada
+            </h3>
+
+            <p>
+              Windows 11 otimizado junto com nossa
+              Otimização Avançada.
+            </p>
+
+            <div class="combo-price">
+              R$ 74<small>,90</small>
+            </div>
+
+            <button
+              class="btn btn-primary"
+              onclick="openPlan('win11')">
+              Ver detalhes →
+            </button>
+
+          </article>
+
+
+          <!-- WINDOWS 10 -->
+
+          <article class="combo reveal">
+
+            <div class="combo-label">
+              Combo especial
+            </div>
+
+            <h3>
+              Windows 10 + Avançada
+            </h3>
+
+            <p>
+              Windows 10 otimizado junto com nossa
+              Otimização Avançada.
+            </p>
+
+            <div class="combo-price">
+              <span id="win10Price">
+                CONSULTAR
+              </span>
+            </div>
+
+            <button
+              class="btn btn-secondary"
+              onclick="openPlan('win10')">
+              Ver detalhes →
+            </button>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         FAQ
+    ========================= -->
+
+    <section id="faq">
+
+      <div class="container">
+
+        <div class="section-head reveal">
+
+          <div class="kicker">
+            Dúvidas
+          </div>
+
+          <h2>
+            Perguntas frequentes.
+          </h2>
+
+        </div>
+
+
+        <div class="faq">
+
+          <details class="reveal">
+
+            <summary>
+              A otimização garante aumento de FPS?
+            </summary>
+
+            <p>
+              Não existe garantia de aumento específico de FPS.
+              Os resultados variam conforme hardware, jogos,
+              drivers, configurações e estado do sistema.
+            </p>
+
+          </details>
+
+
+          <details class="reveal">
+
+            <summary>
+              Preciso formatar o PC?
+            </summary>
+
+            <p>
+              Não necessariamente. A proposta é trabalhar
+              primeiro com diagnóstico e ajustes, preservando
+              o sistema sempre que possível.
+            </p>
+
+          </details>
+
+
+          <details class="reveal">
+
+            <summary>
+              Qual plano devo escolher?
+            </summary>
+
+            <p>
+              A escolha depende do nível de otimização que você
+              procura. Se estiver em dúvida, entre em contato
+              antes da compra para verificar qual opção faz mais sentido.
+            </p>
+
+          </details>
+
+
+          <details class="reveal">
+
+            <summary>
+              Como funciona o pagamento?
+            </summary>
+
+            <p>
+              Depois de escolher o plano e conferir seus detalhes,
+              você será direcionado para o pagamento através do
+              Mercado Pago.
+            </p>
+
+          </details>
+
+
+          <details class="reveal">
+
+            <summary>
+              O resultado é igual em todos os computadores?
+            </summary>
+
+            <p>
+              Não. Cada computador possui hardware, drivers,
+              programas e configurações diferentes. Por isso,
+              os resultados podem variar de acordo com cada máquina.
+            </p>
+
+          </details>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         CTA FINAL
+    ========================= -->
+
+    <section>
+
+      <div class="container">
+
+        <div class="final reveal">
+
+          <div class="kicker">
+            Pronto para começar?
+          </div>
+
+          <h2>
+            Escolha sua otimização.
+          </h2>
+
+          <p>
+            Selecione o plano que melhor combina com seu PC,
+            confira os detalhes e avance para o pagamento.
+          </p>
+
+          <a
+            class="btn btn-primary"
+            href="#planos">
+            Ver planos →
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       FOOTER
+  ========================= -->
+
+  <footer>
+
+    <div class="container foot">
+
+      <span>
+        © <span id="year"></span>
+        7PUZ Tweaks — Todos os direitos reservados.
+      </span>
+
+      <span>
+        Otimização e configuração de PC.
+      </span>
+
+    </div>
+
+  </footer>
+
+
+  <!-- =========================
+       MODAL DOS PLANOS
+  ========================= -->
+
+  <div
+    class="modal-overlay"
+    id="planModal"
+    onclick="closeOutside(event)">
+
+    <div class="modal">
+
+      <div class="modal-header">
+
+        <div>
+
+          <div class="kicker">
+            Detalhes do plano
+          </div>
+
+          <h3 id="modalTitle">
+            Plano
+          </h3>
+
+        </div>
+
+        <button
+          class="close-modal"
+          onclick="closePlan()"
+          aria-label="Fechar">
+          ×
+        </button>
+
+      </div>
+
+
+      <div
+        class="modal-price"
+        id="modalPrice">
+        R$ 0,00
+      </div>
+
+
+      <p
+        class="modal-description"
+        id="modalDescription">
+      </p>
+
+
+      <h4>
+        O que está incluso
+      </h4>
+
+
+      <ul id="modalBenefits">
+      </ul>
+
+
+      <a
+        id="modalPayment"
+        class="btn btn-primary modal-payment"
+        href="#"
+        target="_blank"
+        rel="noopener noreferrer">
+        Ir para pagamento →
+      </a>
+
+
+      <div class="modal-note">
+        Você será direcionado para o checkout do Mercado Pago.
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <script>
+
+    /* =========================
+       DADOS DOS PLANOS
+    ========================= */
+
+    const plans = {
+
+      basic: {
+
+        title: "Otimização Básica",
+
+        price: "R$ 21,90",
+
+        description:
+          "Uma opção de entrada para quem busca ajustes essenciais de desempenho, inicialização e responsividade.",
+
+        benefits: [
+          "Ajustes básicos do sistema",
+          "Otimização de inicialização",
+          "Redução de processos desnecessários",
+          "Ajustes de responsividade"
+        ],
+
+        payment:
+          "https://mpago.la/21DMNPW"
+
+      },
+
+
+      advanced: {
+
+        title: "Otimização Avançada",
+
+        price: "R$ 59,90",
+
+        description:
+          "Uma otimização mais completa para usuários que querem um ajuste mais aprofundado do sistema.",
+
+        benefits: [
+          "Diagnóstico do sistema",
+          "Ajustes avançados de desempenho",
+          "Otimização de inicialização",
+          "Ajustes de responsividade",
+          "Configurações personalizadas"
+        ],
+
+        payment:
+          "https://mpago.la/2THtaHK"
+
+      },
+
+
+      premium: {
+
+        title: "Otimização Premium",
+
+        price: "R$ 149,90",
+
+        description:
+          "Nossa opção mais completa para quem deseja uma experiência de otimização mais aprofundada.",
+
+        benefits: [
+          "Diagnóstico completo",
+          "Ajustes avançados",
+          "Configurações personalizadas",
+          "Otimizações de desempenho",
+          "Checklist de estabilidade"
+        ],
+
+        payment:
+          "https://mpago.la/2xN1t1t"
+
+      },
+
+
+      win11: {
+
+        title: "Windows 11 + Otimização Avançada",
+
+        price: "R$ 74,90",
+
+        description:
+          "Combo com Windows 11 otimizado junto com nossa Otimização Avançada.",
+
+        benefits: [
+          "Otimização do Windows 11",
+          "Otimização Avançada",
+          "Ajustes de desempenho",
+          "Ajustes de inicialização",
+          "Configurações de responsividade"
+        ],
+
+        payment:
+          "https://mpago.la/1fofRmH"
+
+      },
+
+
+      win10: {
+
+        title: "Windows 10 + Otimização Avançada",
+
+        price: "CONSULTAR",
+
+        description:
+          "Combo com Windows 10 otimizado junto com nossa Otimização Avançada.",
+
+        benefits: [
+          "Otimização do Windows 10",
+          "Otimização Avançada",
+          "Ajustes de desempenho",
+          "Ajustes de inicialização",
+          "Configurações de responsividade"
+        ],
+
+        payment:
+          "https://mpago.la/2aALJss"
+
+      }
+
+    };
+
+
+    /* =========================
+       MODAL
+    ========================= */
+
+    function openPlan(planId){
+
+      const plan = plans[planId];
+
+      if(!plan) return;
+
+      document.getElementById("modalTitle").textContent =
+        plan.title;
+
+      document.getElementById("modalPrice").textContent =
+        plan.price;
+
+      document.getElementById("modalDescription").textContent =
+        plan.description;
+
+
+      const benefits =
+        document.getElementById("modalBenefits");
+
+      benefits.innerHTML = "";
+
+      plan.benefits.forEach(function(item){
+
+        const li = document.createElement("li");
+
+        li.textContent = item;
+
+        benefits.appendChild(li);
+
+      });
+
+
+      document.getElementById("modalPayment").href =
+        plan.payment;
+
+
+      document.getElementById("planModal")
+        .classList.add("active");
+
+      document.body.classList.add("modal-open");
+
+    }
+
+
+    function closePlan(){
+
+      document.getElementById("planModal")
+        .classList.remove("active");
+
+      document.body.classList.remove("modal-open");
+
+    }
+
+
+    function closeOutside(event){
+
+      if(event.target.id === "planModal"){
+        closePlan();
+      }
+
+    }
+
+
+    document.addEventListener("keydown", function(event){
+
+      if(event.key === "Escape"){
+        closePlan();
+      }
+
+    });
+
+
+    /* =========================
+       ANIMAÇÕES
+    ========================= */
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+
+    const observer =
+      new IntersectionObserver((entries)=>{
+
+        entries.forEach((entry)=>{
+
+          if(entry.isIntersecting){
+
+            entry.target.classList.add("visible");
+
+          }
+
+        });
+
+      },{
+
+        threshold:.12
+
+      });
+
+
+    document
+      .querySelectorAll(".reveal")
+      .forEach(el => observer.observe(el));
+
+
+    /* =========================
+       MENU MOBILE
+    ========================= */
+
+    function toggleMenu(){
+
+      const links =
+        document.querySelector(".navlinks");
+
+      const open =
+        links.style.display === "flex";
+
+
+      links.style.display =
+        open ? "none" : "flex";
+
+
+      if(!open){
+
+        links.style.position = "absolute";
+        links.style.top = "68px";
+        links.style.left = "14px";
+        links.style.right = "14px";
+        links.style.padding = "18px";
+        links.style.flexDirection = "column";
+        links.style.background = "#111114";
+        links.style.border =
+          "1px solid rgba(255,255,255,.09)";
+        links.style.borderRadius = "14px";
+
+      }
+
+    }
+
+  </script>
+
+</body>
+</html>
+```
