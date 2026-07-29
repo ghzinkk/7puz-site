@@ -1,15 +1,11 @@
+html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta
-    name="description"
-    content="7PUZ Tweaks — otimização profissional para Windows e PC. Escolha seu plano e melhore desempenho, estabilidade e responsividade."
-  >
-
-  <meta name="theme-color" content="#050505">
+  <meta name="description" content="7PUZ Tweaks — otimização profissional para Windows e PC. Escolha seu plano e melhore desempenho, estabilidade e responsividade.">
 
   <title>7PUZ Tweaks — Otimização de PC</title>
 
@@ -47,11 +43,6 @@
       color:var(--text);
       line-height:1.6;
       overflow-x:hidden;
-
-      /* Proteção básica contra seleção casual */
-      -webkit-user-select:none;
-      -moz-user-select:none;
-      user-select:none;
     }
 
     body.modal-open{
@@ -61,12 +52,6 @@
     a{
       text-decoration:none;
       color:inherit;
-      -webkit-user-drag:none;
-    }
-
-    img{
-      -webkit-user-drag:none;
-      user-select:none;
     }
 
     button{
@@ -624,8 +609,6 @@
       color:#909097;
       padding-top:13px;
       max-width:720px;
-      -webkit-user-select:text;
-      user-select:text;
     }
 
     /* =========================
@@ -695,10 +678,6 @@
       padding:30px;
       box-shadow:0 30px 100px rgba(0,0,0,.65);
       animation:modalIn .2s ease;
-
-      /* Permite selecionar/copiar somente conteúdo necessário dentro do modal */
-      -webkit-user-select:text;
-      user-select:text;
     }
 
     @keyframes modalIn{
@@ -779,8 +758,6 @@
 
     .modal-payment{
       width:100%;
-      -webkit-user-select:none;
-      user-select:none;
     }
 
     .modal-note{
@@ -902,7 +879,7 @@
     <div class="container">
       <nav>
 
-        <a class="brand" href="#" aria-label="7PUZ Tweaks">
+        <a class="brand" href="#">
           7PUZ <span>TWEAKS</span>
         </a>
 
@@ -920,7 +897,6 @@
         <button
           class="mobile-menu"
           aria-label="Abrir menu"
-          aria-expanded="false"
           onclick="toggleMenu()">
           ☰
         </button>
@@ -1221,6 +1197,7 @@
 
         <div class="plans">
 
+
           <!-- BÁSICA -->
 
           <article class="plan reveal">
@@ -1248,10 +1225,21 @@
 
             <ul>
 
-              <li>Ajustes básicos do sistema</li>
-              <li>Otimização de inicialização</li>
-              <li>Redução de processos desnecessários</li>
-              <li>Ajustes de responsividade</li>
+              <li>
+                Ajustes básicos do sistema
+              </li>
+
+              <li>
+                Otimização de inicialização
+              </li>
+
+              <li>
+                Redução de processos desnecessários
+              </li>
+
+              <li>
+                Ajustes de responsividade
+              </li>
 
             </ul>
 
@@ -1295,11 +1283,25 @@
 
             <ul>
 
-              <li>Diagnóstico do sistema</li>
-              <li>Ajustes avançados de desempenho</li>
-              <li>Otimização de inicialização</li>
-              <li>Ajustes de responsividade</li>
-              <li>Configurações personalizadas</li>
+              <li>
+                Diagnóstico do sistema
+              </li>
+
+              <li>
+                Ajustes avançados de desempenho
+              </li>
+
+              <li>
+                Otimização de inicialização
+              </li>
+
+              <li>
+                Ajustes de responsividade
+              </li>
+
+              <li>
+                Configurações personalizadas
+              </li>
 
             </ul>
 
@@ -1339,11 +1341,25 @@
 
             <ul>
 
-              <li>Diagnóstico completo</li>
-              <li>Ajustes avançados</li>
-              <li>Configurações personalizadas</li>
-              <li>Otimizações de desempenho</li>
-              <li>Checklist de estabilidade</li>
+              <li>
+                Diagnóstico completo
+              </li>
+
+              <li>
+                Ajustes avançados
+              </li>
+
+              <li>
+                Configurações personalizadas
+              </li>
+
+              <li>
+                Otimizações de desempenho
+              </li>
+
+              <li>
+                Checklist de estabilidade
+              </li>
 
             </ul>
 
@@ -1361,6 +1377,7 @@
         <!-- COMBOS -->
 
         <div class="plans-extra">
+
 
           <!-- WINDOWS 11 -->
 
@@ -1647,7 +1664,8 @@
       </h4>
 
 
-      <ul id="modalBenefits"></ul>
+      <ul id="modalBenefits">
+      </ul>
 
 
       <a
@@ -1670,19 +1688,17 @@
 
 
   <script>
-    "use strict";
 
-    /* =========================================================
-       CONFIGURAÇÃO DOS PLANOS
-       IMPORTANTE:
-       Estes são links públicos de pagamento.
-       NÃO coloque Access Token, senha ou chave privada aqui.
-       ========================================================= */
+    /* =========================
+       DADOS DOS PLANOS
+    ========================= */
 
     const plans = {
 
       basic: {
+
         title: "Otimização Básica",
+
         price: "R$ 21,90",
 
         description:
@@ -1697,11 +1713,14 @@
 
         payment:
           "https://mpago.la/21DMNPW"
+
       },
 
 
       advanced: {
+
         title: "Otimização Avançada",
+
         price: "R$ 59,90",
 
         description:
@@ -1717,11 +1736,14 @@
 
         payment:
           "https://mpago.la/2THtaHK"
+
       },
 
 
       premium: {
+
         title: "Otimização Premium",
+
         price: "R$ 149,90",
 
         description:
@@ -1737,11 +1759,14 @@
 
         payment:
           "https://mpago.la/2xN1t1t"
+
       },
 
 
       win11: {
+
         title: "Windows 11 + Otimização Avançada",
+
         price: "R$ 74,90",
 
         description:
@@ -1757,11 +1782,14 @@
 
         payment:
           "https://mpago.la/1fofRmH"
+
       },
 
 
       win10: {
+
         title: "Windows 10 + Otimização Avançada",
+
         price: "CONSULTAR",
 
         description:
@@ -1777,79 +1805,54 @@
 
         payment:
           "https://mpago.la/2aALJss"
+
       }
 
     };
 
 
-    /* =========================================================
-       MODAL DOS PLANOS
-       ========================================================= */
+    /* =========================
+       MODAL
+    ========================= */
 
     function openPlan(planId){
 
       const plan = plans[planId];
 
-      if(!plan){
-        return;
-      }
+      if(!plan) return;
 
-      const modalTitle =
-        document.getElementById("modalTitle");
+      document.getElementById("modalTitle").textContent =
+        plan.title;
 
-      const modalPrice =
-        document.getElementById("modalPrice");
+      document.getElementById("modalPrice").textContent =
+        plan.price;
 
-      const modalDescription =
-        document.getElementById("modalDescription");
+      document.getElementById("modalDescription").textContent =
+        plan.description;
+
 
       const benefits =
         document.getElementById("modalBenefits");
 
-      const modalPayment =
-        document.getElementById("modalPayment");
-
-      const modal =
-        document.getElementById("planModal");
-
-
-      modalTitle.textContent =
-        plan.title;
-
-      modalPrice.textContent =
-        plan.price;
-
-      modalDescription.textContent =
-        plan.description;
-
-
       benefits.innerHTML = "";
-
 
       plan.benefits.forEach(function(item){
 
-        const li =
-          document.createElement("li");
+        const li = document.createElement("li");
 
-        li.textContent =
-          item;
+        li.textContent = item;
 
         benefits.appendChild(li);
 
       });
 
 
-      /*
-       * O link de pagamento continua funcionando normalmente.
-       * rel="noopener noreferrer" protege a página de origem
-       * quando o checkout é aberto em outra aba.
-       */
-
-      modalPayment.href =
+      document.getElementById("modalPayment").href =
         plan.payment;
 
 
-      modal.classList.add("active");
+      document.getElementById("planModal")
+        .classList.add("active");
 
       document.body.classList.add("modal-open");
 
@@ -1858,12 +1861,10 @@
 
     function closePlan(){
 
-      document
-        .getElementById("planModal")
+      document.getElementById("planModal")
         .classList.remove("active");
 
-      document.body
-        .classList.remove("modal-open");
+      document.body.classList.remove("modal-open");
 
     }
 
@@ -1877,348 +1878,79 @@
     }
 
 
-    document.addEventListener(
-      "keydown",
-      function(event){
+    document.addEventListener("keydown", function(event){
 
-        if(event.key === "Escape"){
-          closePlan();
-        }
-
+      if(event.key === "Escape"){
+        closePlan();
       }
-    );
+
+    });
 
 
-    /* =========================================================
+    /* =========================
        ANIMAÇÕES
-       ========================================================= */
+    ========================= */
 
     document.getElementById("year").textContent =
       new Date().getFullYear();
 
 
     const observer =
-      new IntersectionObserver(
+      new IntersectionObserver((entries)=>{
 
-        function(entries){
+        entries.forEach((entry)=>{
 
-          entries.forEach(function(entry){
+          if(entry.isIntersecting){
 
-            if(entry.isIntersecting){
+            entry.target.classList.add("visible");
 
-              entry.target.classList.add("visible");
+          }
 
-              observer.unobserve(entry.target);
+        });
 
-            }
+      },{
 
-          });
-
-        },
-
-        {
-          threshold:.12
-        }
-
-      );
-
-
-    document
-      .querySelectorAll(".reveal")
-      .forEach(function(el){
-
-        observer.observe(el);
+        threshold:.12
 
       });
 
 
-    /* =========================================================
+    document
+      .querySelectorAll(".reveal")
+      .forEach(el => observer.observe(el));
+
+
+    /* =========================
        MENU MOBILE
-       ========================================================= */
+    ========================= */
 
     function toggleMenu(){
 
       const links =
         document.querySelector(".navlinks");
 
-      const button =
-        document.querySelector(".mobile-menu");
-
-      const isOpen =
-        links.classList.contains("mobile-open");
+      const open =
+        links.style.display === "flex";
 
 
-      if(isOpen){
-
-        links.classList.remove("mobile-open");
-
-        links.style.display = "none";
-
-        button.setAttribute(
-          "aria-expanded",
-          "false"
-        );
-
-        return;
-
-      }
+      links.style.display =
+        open ? "none" : "flex";
 
 
-      links.classList.add("mobile-open");
+      if(!open){
 
-      links.style.display = "flex";
-      links.style.position = "absolute";
-      links.style.top = "68px";
-      links.style.left = "14px";
-      links.style.right = "14px";
-      links.style.padding = "18px";
-      links.style.flexDirection = "column";
-      links.style.background = "#111114";
-      links.style.border =
-        "1px solid rgba(255,255,255,.09)";
-      links.style.borderRadius = "14px";
-
-
-      button.setAttribute(
-        "aria-expanded",
-        "true"
-      );
-
-    }
-
-
-    /*
-     * Fecha o menu mobile quando um link é selecionado.
-     */
-
-    document
-      .querySelectorAll(".navlinks a")
-      .forEach(function(link){
-
-        link.addEventListener(
-          "click",
-          function(){
-
-            const links =
-              document.querySelector(".navlinks");
-
-            const button =
-              document.querySelector(".mobile-menu");
-
-            links.classList.remove("mobile-open");
-
-            if(window.innerWidth <= 900){
-              links.style.display = "none";
-            }
-
-            button.setAttribute(
-              "aria-expanded",
-              "false"
-            );
-
-          }
-        );
-
-      });
-
-
-    /* =========================================================
-       PROTEÇÃO BÁSICA CONTRA CÓPIA CASUAL
-       
-       IMPORTANTE:
-       Isto NÃO é segurança real.
-       Um usuário experiente ainda consegue acessar
-       o código pelo navegador.
-       ========================================================= */
-
-    document.addEventListener(
-      "contextmenu",
-      function(event){
-
-        event.preventDefault();
+        links.style.position = "absolute";
+        links.style.top = "68px";
+        links.style.left = "14px";
+        links.style.right = "14px";
+        links.style.padding = "18px";
+        links.style.flexDirection = "column";
+        links.style.background = "#111114";
+        links.style.border =
+          "1px solid rgba(255,255,255,.09)";
+        links.style.borderRadius = "14px";
 
       }
-    );
-
-
-    document.addEventListener(
-      "dragstart",
-      function(event){
-
-        if(
-          event.target.tagName === "IMG" ||
-          event.target.tagName === "A"
-        ){
-
-          event.preventDefault();
-
-        }
-
-      }
-    );
-
-
-    /*
-     * Bloqueia alguns atalhos comuns usados para
-     * copiar/visualizar a página.
-     *
-     * Os atalhos não são uma proteção verdadeira.
-     */
-
-    document.addEventListener(
-      "keydown",
-      function(event){
-
-        const key =
-          event.key.toLowerCase();
-
-
-        /* Ctrl + U */
-        if(
-          event.ctrlKey &&
-          key === "u"
-        ){
-
-          event.preventDefault();
-          return;
-
-        }
-
-
-        /* Ctrl + S */
-        if(
-          event.ctrlKey &&
-          key === "s"
-        ){
-
-          event.preventDefault();
-          return;
-
-        }
-
-
-        /* Ctrl + Shift + I */
-        if(
-          event.ctrlKey &&
-          event.shiftKey &&
-          key === "i"
-        ){
-
-          event.preventDefault();
-          return;
-
-        }
-
-
-        /* Ctrl + Shift + J */
-        if(
-          event.ctrlKey &&
-          event.shiftKey &&
-          key === "j"
-        ){
-
-          event.preventDefault();
-          return;
-
-        }
-
-
-        /* Ctrl + Shift + C */
-        if(
-          event.ctrlKey &&
-          event.shiftKey &&
-          key === "c"
-        ){
-
-          event.preventDefault();
-          return;
-
-        }
-
-
-        /* F12 */
-        if(event.key === "F12"){
-
-          event.preventDefault();
-          return;
-
-        }
-
-      }
-    );
-
-
-    /*
-     * Protege contra copiar grandes partes da página.
-     * O conteúdo dos detalhes do modal continua selecionável.
-     */
-
-    document.addEventListener(
-      "copy",
-      function(event){
-
-        const selection =
-          window.getSelection();
-
-        if(!selection){
-          return;
-        }
-
-
-        const selectedElement =
-          selection.anchorNode &&
-          selection.anchorNode.parentElement;
-
-
-        if(
-          selectedElement &&
-          selectedElement.closest(".modal")
-        ){
-
-          return;
-
-        }
-
-
-        event.preventDefault();
-
-      }
-    );
-
-
-    /*
-     * Impede que o usuário arraste links da página
-     * para outro lugar do navegador.
-     */
-
-    document.addEventListener(
-      "dragstart",
-      function(event){
-
-        if(event.target.closest("a")){
-          event.preventDefault();
-        }
-
-      }
-    );
-
-
-    /* =========================================================
-       PEQUENA PROTEÇÃO CONTRA IFRAME
-       ========================================================= */
-
-    try{
-
-      if(window.top !== window.self){
-
-        window.top.location =
-          window.self.location;
-
-      }
-
-    }catch(error){
-
-      /* Ignora bloqueios do navegador */
 
     }
 
@@ -2226,3 +1958,4 @@
 
 </body>
 </html>
+```
