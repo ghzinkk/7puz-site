@@ -996,6 +996,42 @@
     @keyframes buttonShine { 0%,25% { left:-70%; } 70%,100% { left:140%; } }
     @keyframes featuredLift { 0%,100% { translate:0 0; } 50% { translate:0 -9px; } }
     @keyframes buttonPop { 0% { scale:1; } 35% { scale:.92; } 70% { scale:1.035; } 100% { scale:1; } }
+    .cart-launch { display:flex; align-items:center; gap:8px; border:1px solid #b52b36; background:#281013; color:#fff; padding:9px 12px; border-radius:8px; cursor:pointer; font-weight:800; }
+    .cart-launch svg { width:20px; height:20px; }
+    .cart-count { background:#b52933; border-radius:50%; min-width:22px; font-size:12px; text-align:center; }
+    .cart-add { width:100%; margin-top:10px; min-height:44px; background:transparent; color:#bbb0ba; border:1px solid #ffffff15; font:800 .75rem system-ui; letter-spacing:.12em; text-transform:uppercase; cursor:pointer; transition:background .2s,color .2s; }
+    .cart-add:hover { background:#ffffff10; color:#fff; }
+    .cart-dialog { position:fixed; inset:16px 16px 16px auto; margin:0; width:min(430px,calc(100% - 24px)); height:calc(100dvh - 32px); max-height:none; max-width:none; padding:0; color:#fff; border:1px solid #682328; border-radius:22px; background:#14090b; box-shadow:0 30px 100px #000a; overflow:hidden; }
+    .cart-dialog::backdrop { background:#000a; backdrop-filter:blur(5px); }
+    .cart-dialog[open] { display:flex; flex-direction:column; animation:cartSlide .3s ease-out; }
+    .cart-head { display:flex; justify-content:space-between; align-items:center; padding:24px; border-bottom:1px solid #ffffff09; }
+    .cart-head h2 { font-size:1.1rem; letter-spacing:0; margin:0; }
+    .cart-head p { font-size:.75rem; color:#b4a2a6; margin-top:3px; }
+    .cart-close { background:#ffffff08; color:#ddd; border:1px solid #ffffff15; border-radius:50%; width:32px; height:32px; cursor:pointer; }
+    .cart-body { flex:1; overflow:auto; padding:22px; }
+    .cart-empty { min-height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px; text-align:center; color:#bba6ab; }
+    .cart-empty svg { width:64px; height:64px; color:#754950; }
+    .cart-empty strong { font-size:1rem; } .cart-empty p { font-size:.8rem; }
+    .cart-item { padding:18px 0; border-bottom:1px solid #ffffff12; display:grid; grid-template-columns:1fr auto; gap:10px; }
+    .cart-item h3 { font-size:1rem; line-height:1.4; }
+    .cart-item p { color:#e39aa3; font-weight:800; margin-top:5px; }
+    .cart-remove { align-self:start; color:#c9abb1; border:0; background:none; cursor:pointer; text-decoration:underline; font-size:.8rem; }
+    .cart-footer { border-top:1px solid #ffffff0c; padding:22px; background:#180b0d; }
+    .cart-row { display:flex; justify-content:space-between; gap:12px; margin-bottom:12px; }
+    .cart-row.subtotal { font-size:.8rem; color:#bea6ab; } .cart-total { font-size:1.45rem; }
+    .cart-checkout { width:100%; margin-top:14px; padding:14px; border:0; border-radius:10px; background:#be2934; color:white; font-weight:900; cursor:pointer; }
+    .cart-checkout:disabled { opacity:.4; cursor:not-allowed; }
+    .checkout-note { font-size:.8rem; color:#bda3a9; margin:12px 0; }
+    .checkout-link { display:block; padding:12px; margin-top:10px; border:1px solid #8e343e; border-radius:8px; font-size:.875rem; background:#351218; }
+    .cart-notice { position:fixed; bottom:70px; left:50%; transform:translateX(-50%); z-index:100; background:#271119; color:#fff; border:1px solid #b94f74; border-radius:10px; padding:12px 20px; width:max-content; max-width:90%; box-shadow:0 8px 40px #0008; }
+    .feedback { text-align:center; padding:80px 28px; background:radial-gradient(ellipse at 20% 90%,#9b192b35,transparent 65%),linear-gradient(#ffffff07 1px,transparent 1px),linear-gradient(90deg,#ffffff07 1px,transparent 1px),#12080a; background-size:auto,80px 80px,80px 80px,auto; border:1px solid #ffffff09; }
+    .feedback h2 { font-size:clamp(2.3rem,5vw,4.5rem); font-weight:950; font-style:italic; text-transform:uppercase; margin:22px 0; }
+    .feedback h2 span { color:#cb333f; }
+    .feedback p { max-width:690px; margin:0 auto 30px; color:#b8a4aa; }
+    .feedback .kicker { color:#bd939c; }
+    .feedback-links { display:flex; justify-content:center; gap:12px; flex-wrap:wrap; }
+    @keyframes cartSlide { from { opacity:0; transform:translateX(60px); } to { opacity:1; transform:none; } }
+    @media(max-width:520px) { .cart-dialog { inset:10px 12px; height:calc(100dvh - 20px); } .cart-launch { padding:8px; } .cart-head,.cart-body,.cart-footer { padding:18px; } }
   </style>
 </head>
 
@@ -1019,6 +1055,7 @@
           <a href="#planos">Planos</a>
           <a href="#faq">FAQ</a>
           <a href="#ajuda">Ajuda</a>
+          <a href="#avaliacoes">Avaliações</a>
         </div>
 
         <a class="nav-cta" href="#planos">
@@ -1033,6 +1070,10 @@
           ☰
         </button>
 
+        <button class="cart-launch" type="button" onclick="openCart()" aria-label="Abrir carrinho">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M2 3h3l4 13h11l3-9H6M10 21h.01M19 21h.01"/></svg>
+          <span class="cart-count" id="cartCount">0</span>
+        </button>
       </nav>
     </div>
   </header>
@@ -1538,6 +1579,20 @@
     <!-- =========================
          FAQ
     ========================= -->
+
+    <section id="avaliacoes" aria-labelledby="feedback-title">
+      <div class="container">
+        <div class="feedback reveal">
+          <div class="kicker">Feedback da comunidade</div>
+          <h2 id="feedback-title">Quem testou,<br><span>conta no Discord.</span></h2>
+          <p>Veja as experiências compartilhadas pela comunidade da 7PUZ Tweaks no nosso canal de avaliações.</p>
+          <div class="feedback-links">
+            <a class="btn btn-secondary" href="https://discord.com/channels/1470985343875551357/1471154856050954433" target="_blank" rel="noopener noreferrer">Ver mais avaliações ↗</a>
+            <a class="btn btn-secondary" href="https://discord.gg/Zf8MXZu89J" target="_blank" rel="noopener noreferrer">Entrar no Discord ↗</a>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <section id="ajuda" aria-labelledby="help-title">
       <div class="container">
@@ -2398,6 +2453,134 @@
       button.appendChild(ripple);
       window.setTimeout(function() { ripple.remove(); }, 700);
     });
+  </script>
+  <dialog class="cart-dialog" id="cartDialog" aria-labelledby="cartTitle">
+    <header class="cart-head">
+      <div><h2 id="cartTitle">CARRINHO</h2><p id="cartSummary">0 itens selecionados</p></div>
+      <button class="cart-close" type="button" aria-label="Fechar carrinho" onclick="closeCart()">×</button>
+    </header>
+    <div class="cart-body" id="cartBody"></div>
+    <footer class="cart-footer">
+      <div class="cart-row subtotal"><span>SUBTOTAL</span><span id="cartSubtotal">R$ 0,00</span></div>
+      <div class="cart-row"><strong>VALOR TOTAL:</strong><strong class="cart-total" id="cartTotal">R$ 0,00</strong></div>
+      <button class="cart-checkout" id="cartCheckout" type="button" onclick="showCartCheckout()">IR PARA A COMPRA →</button>
+      <p class="checkout-note">Pagamento individual de cada plano pelo Mercado Pago.</p>
+    </footer>
+  </dialog>
+  <div class="cart-notice" id="cartNotice" role="status" hidden></div>
+  <script>
+    const cartPrices = { basic:2190, advanced:7990, premium:14990, win11:7490, win10:7490 };
+    const cartKey = '7puz-cart-v1';
+    function sanitizeCart(value) {
+      return Array.isArray(value) ? [...new Set(value.filter(id => Object.hasOwn(cartPrices,id)))] : [];
+    }
+    function cartSum(items) { return sanitizeCart(items).reduce((total,id) => total + cartPrices[id],0); }
+    function money(cents) { return (cents / 100).toLocaleString('pt-BR',{style:'currency',currency:'BRL'}); }
+    let cartItems = [];
+    try { cartItems = sanitizeCart(JSON.parse(localStorage.getItem(cartKey) || '[]')); } catch (_) {}
+    let cartCheckoutMode = false;
+    let cartNoticeTimer;
+    function saveCart() {
+      try { localStorage.setItem(cartKey,JSON.stringify(cartItems)); } catch (_) {}
+      renderCart();
+    }
+    function addToCart(id) {
+      if (!Object.hasOwn(cartPrices,id)) return;
+      const exists = cartItems.includes(id);
+      if (!exists) cartItems.push(id);
+      cartCheckoutMode = false;
+      saveCart();
+      openCart();
+      const notice = document.getElementById('cartNotice');
+      notice.textContent = exists ? 'Este plano já está no carrinho.' : 'Plano adicionado ao carrinho.';
+      notice.hidden = false;
+      clearTimeout(cartNoticeTimer);
+      cartNoticeTimer = setTimeout(() => { notice.hidden = true; },2500);
+    }
+    function removeFromCart(id) {
+      cartItems = cartItems.filter(item => item !== id);
+      if (!cartItems.length) cartCheckoutMode = false;
+      saveCart();
+    }
+    function openCart() {
+      renderCart();
+      const dialog = document.getElementById('cartDialog');
+      if (!dialog.open) dialog.showModal();
+      document.body.classList.add('modal-open');
+    }
+    function closeCart() { document.getElementById('cartDialog').close(); }
+    function showCartCheckout() {
+      if (!cartItems.length) return;
+      cartCheckoutMode = true;
+      renderCart();
+      document.querySelector('.checkout-link')?.focus();
+    }
+    function renderCart() {
+      document.getElementById('cartCount').textContent = cartItems.length;
+      document.getElementById('cartSummary').textContent = cartItems.length + (cartItems.length === 1 ? ' item selecionado' : ' itens selecionados');
+      const total = money(cartSum(cartItems));
+      document.getElementById('cartSubtotal').textContent = total;
+      document.getElementById('cartTotal').textContent = total;
+      document.getElementById('cartCheckout').disabled = !cartItems.length;
+      const body = document.getElementById('cartBody');
+      body.replaceChildren();
+      if (!cartItems.length) {
+        body.innerHTML = '<div class="cart-empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M2 3h3l4 13h11l3-9H6"/><circle cx="10" cy="21" r="1"/><circle cx="19" cy="21" r="1"/></svg><strong>SEU CARRINHO ESTÁ VAZIO</strong><p>ADICIONE PLANOS PARA COMEÇAR</p></div>';
+      }
+      if (cartCheckoutMode) {
+        const note = document.createElement('p');
+        note.className = 'checkout-note';
+        note.textContent = 'Escolha um item abaixo para abrir seu pagamento. Cada plano possui um checkout separado; os itens permanecem no carrinho até você removê-los.';
+        body.appendChild(note);
+      }
+      cartItems.forEach(id => {
+        const item = document.createElement('article');
+        item.className = 'cart-item';
+        const info = document.createElement('div');
+        const title = document.createElement('h3');
+        title.textContent = plans[id].title;
+        const price = document.createElement('p');
+        price.textContent = money(cartPrices[id]);
+        info.append(title,price);
+        const remove = document.createElement('button');
+        remove.type = 'button'; remove.className = 'cart-remove'; remove.textContent = 'Remover';
+        remove.setAttribute('aria-label','Remover ' + plans[id].title);
+        remove.addEventListener('click',() => removeFromCart(id));
+        item.append(info,remove);
+        if (cartCheckoutMode) {
+          const pay = document.createElement('a');
+          pay.className = 'checkout-link'; pay.href = plans[id].payment;
+          pay.target = '_blank'; pay.rel = 'noopener noreferrer';
+          pay.textContent = 'Pagar ' + money(cartPrices[id]) + ' no Mercado Pago ↗';
+          info.appendChild(pay);
+        }
+        body.appendChild(item);
+      });
+      document.querySelectorAll('[data-cart-add]').forEach(button => {
+        button.textContent = cartItems.includes(button.dataset.cartAdd) ? '✓ No carrinho · Ver' : 'Adicionar ao carrinho';
+      });
+    }
+    document.querySelectorAll('.plan button[onclick], .combo button[onclick]').forEach(button => {
+      const match = button.getAttribute('onclick').match(/openPlan\('([^']+)'\)/);
+      if (!match) return;
+      const add = document.createElement('button');
+      add.type = 'button'; add.className = 'cart-add'; add.dataset.cartAdd = match[1];
+      add.addEventListener('click',() => addToCart(match[1]));
+      button.after(add);
+    });
+    document.getElementById('cartDialog').addEventListener('close',() => {
+      if (!document.getElementById('planModal').classList.contains('active')) document.body.classList.remove('modal-open');
+    });
+    document.getElementById('cartDialog').addEventListener('click',event => {
+      const rect = event.currentTarget.getBoundingClientRect();
+      if (event.target === event.currentTarget && (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom)) closeCart();
+    });
+    window.addEventListener('storage',event => {
+      if (event.key !== cartKey && event.key !== null) return;
+      try { cartItems = sanitizeCart(JSON.parse(event.newValue || '[]')); } catch (_) { cartItems = []; }
+      renderCart();
+    });
+    renderCart();
   </script>
 </body>
 </html>
