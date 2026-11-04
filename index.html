@@ -79,6 +79,103 @@
     @media(max-width:900px){.navlinks{gap:14px}.hero-grid{gap:25px}.plans{grid-template-columns:repeat(2,1fr)}.plan:last-child{grid-column:span 2}.hero{min-height:auto}}
     @media(max-width:700px){.nav{height:67px}.menu-button{display:block}.navlinks{display:none;position:absolute;top:67px;left:0;right:0;padding:18px 22px 22px;background:#0b090e;border-bottom:1px solid var(--line);flex-direction:column;align-items:flex-start}.navlinks.open{display:flex}.hero{padding:65px 0}.hero-grid{grid-template-columns:1fr}.hero-visual{min-height:330px}.pc-card{max-width:340px}.tag-one{right:0}.tag-two{left:0}h1{letter-spacing:-2.7px}.benefits,.steps{grid-template-columns:1fr}.plans{grid-template-columns:1fr}.plan:last-child{grid-column:auto}section{padding:65px 0}.community{padding:28px;display:block}.community-actions{margin-top:20px}.footer-inner{flex-direction:column;text-align:center}.hero-stats{gap:20px}}
     @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+  
+
+    /* BOTOES CLEAN: elevacao lenta e suave ao passar o mouse */
+    .btn,.cart-button,.menu-button,.close,.details-btn,.cart-item button,.faq-question {
+      position:relative;
+      transition:transform .68s cubic-bezier(.22,1,.36,1),box-shadow .68s cubic-bezier(.22,1,.36,1),border-color .58s ease,background .58s ease,color .45s ease;
+    }
+    .btn {overflow:hidden;isolation:isolate;will-change:transform}
+    /* Remove o reflexo que deixava a interacao chamativa demais */
+    .btn::before {display:none}
+    .btn:hover {transform:translateY(-5px)}
+    .btn:active,.cart-button:active,.menu-button:active {transform:translateY(-1px);transition-duration:.16s}
+    .btn-primary:hover {box-shadow:0 12px 28px rgba(255,46,147,.22)}
+    .btn-secondary:hover {transform:translateY(-5px);box-shadow:0 10px 24px rgba(255,46,147,.08);border-color:rgba(255,46,147,.32)}
+    .cart-button:hover,.menu-button:hover {transform:translateY(-3px);border-color:rgba(255,46,147,.65);box-shadow:0 8px 25px rgba(255,46,147,.2);background:#1b111c}
+    .close:hover {transform:rotate(90deg) scale(1.08);border-color:var(--pink);color:#ff8bc1}
+    .details-btn {transition:color .38s ease,letter-spacing .42s ease,transform .48s cubic-bezier(.16,1,.3,1),text-shadow .38s ease}
+    .details-btn:hover {transform:translateY(-2px);letter-spacing:.15px;text-shadow:0 0 10px rgba(255,46,147,.25)}
+    .cart-item button:hover {transform:scale(1.08);color:#ff9ac8;text-decoration:underline}
+    .faq-question:hover {background:rgba(255,46,147,.055);padding-left:26px}
+    .navlinks a {transition:color .35s ease,text-shadow .4s ease,transform .45s cubic-bezier(.16,1,.3,1)}
+    .navlinks a:hover {transform:translateY(-2px);text-shadow:0 0 14px rgba(255,46,147,.65)}
+    .plan {transform:translateZ(0);will-change:transform,box-shadow}
+    .plan:hover {transform:translateY(-9px) scale(1.012);box-shadow:0 20px 55px rgba(255,46,147,.16),0 0 0 1px rgba(255,46,147,.13)}
+    .feature,.step,.community {transition:transform .3s ease,border-color .3s ease,box-shadow .3s ease}
+    .feature:hover,.step:hover {transform:translateY(-7px);border-color:rgba(255,46,147,.38);box-shadow:0 14px 38px rgba(255,46,147,.1)}
+    .community-actions .btn {white-space:nowrap}
+    .cart-added {animation:cartImpact .55s cubic-bezier(.2,.8,.2,1),cartGlow .9s ease}
+    @keyframes cartImpact {0%{transform:scale(1)}35%{transform:scale(1.035)}65%{transform:scale(.985)}100%{transform:scale(1)}}
+    @keyframes cartGlow {0%,100%{box-shadow:0 0 0 rgba(255,46,147,0)}35%{box-shadow:0 0 42px rgba(255,46,147,.55),inset 0 0 18px rgba(255,46,147,.08)}}
+    @keyframes countBounce {0%{transform:scale(1) rotate(0)}30%{transform:scale(1.65) rotate(12deg)}55%{transform:scale(.85) rotate(-8deg)}78%{transform:scale(1.15)}100%{transform:scale(1)}}
+    @keyframes buttonPop {0%{transform:scale(1)}35%{transform:scale(.94)}70%{transform:scale(1.07)}100%{transform:scale(1)}}
+    .cart-count.bump {animation:countBounce .55s cubic-bezier(.2,.8,.2,1)}
+    .add-cart.cart-success {animation:buttonPop .42s ease}
+    .cart-fly-dot {position:fixed;z-index:120;width:15px;height:15px;border-radius:50%;pointer-events:none;background:radial-gradient(circle at 35% 30%,#fff,#ff65b1 48%,#9b5cff);box-shadow:0 0 18px #ff2e93,0 0 32px rgba(155,92,255,.75)}
+    .toast.show {animation:toastPop .35s cubic-bezier(.2,.8,.2,1)}
+    @keyframes toastPop {0%{opacity:0;transform:translate(-50%,18px) scale(.88)}70%{opacity:1;transform:translate(-50%,-3px) scale(1.025)}100%{opacity:1;transform:translate(-50%,0) scale(1)}}
+    @media (prefers-reduced-motion:reduce) {
+      .btn,.cart-button,.menu-button,.close,.details-btn,.cart-item button,.faq-question,.plan,.feature,.step {transition:none!important}
+      .btn::before {display:none}
+    }
+
+
+    /* CARDS/BANNERS: flutuacao bem suave, sem salto brusco */
+    .feature,.step,.plan,.community {
+      transition:
+        transform 2s cubic-bezier(.22,.68,0,1),
+        box-shadow 2s cubic-bezier(.22,.68,0,1),
+        border-color 1.5s ease,
+        background-color 1.5s ease;
+      will-change: transform;
+    }
+    .feature:hover,.step:hover {
+      transform: translate3d(0,-4px,0);
+      border-color: rgba(255,46,147,.28);
+      box-shadow: 0 10px 28px rgba(255,46,147,.07);
+    }
+    .plan:hover {
+      transform: translate3d(0,-5px,0);
+      border-color: rgba(255,46,147,.32);
+      box-shadow: 0 13px 36px rgba(255,46,147,.09);
+    }
+    .community:hover {
+      transform: translate3d(0,-4px,0);
+      border-color: rgba(255,46,147,.28);
+      box-shadow: 0 12px 32px rgba(255,46,147,.07);
+    }
+    @media (prefers-reduced-motion:reduce) {
+      .feature,.step,.plan,.community {transition:none!important;will-change:auto}
+    }
+
+    /* BOTOES: mesma flutuacao suave de 2 segundos dos banners */
+    .btn,.cart-button,.menu-button,.close,.details-btn,.cart-item button,.faq-question {
+      transition:
+        transform 2s cubic-bezier(.22,.68,0,1),
+        box-shadow 2s cubic-bezier(.22,.68,0,1),
+        border-color 1.5s ease,
+        background-color 1.5s ease,
+        color 1.5s ease;
+    }
+    .btn:hover,.btn-secondary:hover {
+      transform:translate3d(0,-4px,0);
+    }
+    .btn-primary:hover {
+      box-shadow:0 12px 28px rgba(255,46,147,.22);
+    }
+    .cart-button:hover,.menu-button:hover {
+      transform:translate3d(0,-4px,0);
+    }
+    .details-btn:hover {transform:translate3d(0,-2px,0)}
+    .close:hover {transform:translate3d(0,-2px,0) rotate(90deg)}
+    .cart-item button:hover {transform:translate3d(0,-2px,0)}
+    .faq-question:hover {transform:translate3d(0,-2px,0)}
+    @media (prefers-reduced-motion:reduce) {
+      .btn,.cart-button,.menu-button,.close,.details-btn,.cart-item button,.faq-question {transition:none!important}
+    }
+
   </style>
 </head>
 <body>
@@ -214,12 +311,66 @@
     cart.forEach((id,i)=>{const b=document.createElement("a");b.className="btn btn-primary";b.style.width="100%";b.href=plans[id].link;b.target="_blank";b.rel="noopener";b.textContent="Pagar "+plans[id].name+" — "+money(plans[id].price);checkout.append(b)});
     host.append(list,total,note,checkout);
   }
-  function addToCart(id){if(!plans[id])return;cart.push(id);renderCart();toast(plans[id].name+" adicionado ao carrinho")}
+  function flyToCart(source){
+    const target = $("#open-cart");
+    if(!source || !target || !source.getBoundingClientRect || !target.getBoundingClientRect) return;
+    const a = source.getBoundingClientRect();
+    const b = target.getBoundingClientRect();
+    const dot = document.createElement("span");
+    dot.className = "cart-fly-dot";
+    dot.style.left = (a.left + a.width / 2 - 7) + "px";
+    dot.style.top = (a.top + a.height / 2 - 7) + "px";
+    document.body.appendChild(dot);
+    const dx = (b.left + b.width / 2) - (a.left + a.width / 2);
+    const dy = (b.top + b.height / 2) - (a.top + a.height / 2);
+    const motion = dot.animate([
+      { transform:"translate(0,0) scale(1)", opacity:1 },
+      { transform:`translate(${dx * .55}px,${dy * .55 - 55}px) scale(1.25)`, opacity:1, offset:.65 },
+      { transform:`translate(${dx}px,${dy}px) scale(.15)`, opacity:0 }
+    ],{duration:650,easing:"cubic-bezier(.22,.8,.25,1)"});
+    motion.onfinish = () => dot.remove();
+  }
+
+  function addToCart(id, sourceButton){
+    if(!plans[id]) return;
+    cart.push(id);
+    renderCart();
+
+    const card = document.querySelector(`[data-plan="${id}"]`);
+    if(card){
+      card.classList.remove("cart-added");
+      void card.offsetWidth;
+      card.classList.add("cart-added");
+      setTimeout(() => card.classList.remove("cart-added"),950);
+    }
+
+    const button = sourceButton || document.querySelector(`.add-cart[data-id="${id}"]`);
+    if(button){
+      flyToCart(button);
+      button.classList.remove("cart-success");
+      void button.offsetWidth;
+      button.classList.add("cart-success");
+      const originalText = button.dataset.originalText || button.textContent;
+      button.dataset.originalText = originalText;
+      button.textContent = "✓ Adicionado!";
+      setTimeout(() => {
+        button.classList.remove("cart-success");
+        button.textContent = originalText;
+      },1100);
+    }
+
+    const counter = $("#cart-count");
+    counter.classList.remove("bump");
+    void counter.offsetWidth;
+    counter.classList.add("bump");
+    setTimeout(() => counter.classList.remove("bump"),600);
+    toast("✦ " + plans[id].name + " adicionado ao carrinho!");
+  }
   function openModal(id){$("#"+id).classList.add("show");document.body.style.overflow="hidden"}
   function closeModal(id){$("#"+id).classList.remove("show");if(!document.querySelector(".modal-backdrop.show"))document.body.style.overflow=""}
-  document.querySelectorAll(".add-cart").forEach(b=>b.addEventListener("click",()=>addToCart(b.dataset.id)));
+  document.querySelectorAll(".add-cart").forEach(b=>b.addEventListener("click",()=>addToCart(b.dataset.id,b)));
   document.querySelectorAll(".details-btn").forEach(b=>b.addEventListener("click",()=>{selectedDetail=b.dataset.details;const p=plans[selectedDetail];$("#details-title").textContent=p.name;$("#details-text").textContent=p.description+" Valor: "+money(p.price)+". O pagamento é feito pelo link Mercado Pago deste plano.";openModal("details-modal")}));
-  $("#details-add").addEventListener("click",()=>{if(selectedDetail)addToCart(selectedDetail);closeModal("details-modal")});
+  $("#details-add").addEventListener("click",()=>{if(selectedDetail)addToCart(selectedDetail,$("#details-add"));closeModal("details-modal")});
   $("#open-cart").addEventListener("click",()=>{renderCart();openModal("cart-modal")});
   document.querySelectorAll("[data-close]").forEach(b=>b.addEventListener("click",()=>closeModal(b.dataset.close)));
   document.querySelectorAll(".modal-backdrop").forEach(back=>back.addEventListener("click",e=>{if(e.target===back)closeModal(back.id)}));
